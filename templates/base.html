@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Employee Salary Prediction System{% endblock %}</title>
+    <style>
+      :root {
+        --bg: #f4efe4;
+        --panel: rgba(255, 252, 246, 0.94);
+        --ink: #1d1a16;
+        --muted: #6f6558;
+        --accent: #af3d1d;
+        --accent-soft: #e7b886;
+        --line: rgba(29, 26, 22, 0.12);
+        --shadow: 0 20px 60px rgba(60, 32, 10, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        background:
+          radial-gradient(circle at top left, rgba(175, 61, 29, 0.16), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(231, 184, 134, 0.35), transparent 35%),
+          linear-gradient(135deg, #f6f1e7, #efe4d3 60%, #e9dbc4);
+        background-color: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      code,
+      pre {
+        font-family: "SFMono-Regular", Consolas, monospace;
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 24px auto 48px;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 22px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        color: var(--muted);
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--accent);
+        border-color: rgba(175, 61, 29, 0.16);
+        background: rgba(175, 61, 29, 0.08);
+      }
+
+      .hero,
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        margin-top: 20px;
+        padding: 30px;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .hero-grid,
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+      }
+
+      .grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        margin-top: 20px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 12px;
+      }
+
+      p,
+      li,
+      label,
+      select,
+      button,
+      input,
+      th,
+      td {
+        font-size: 15px;
+      }
+
+      .pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: rgba(175, 61, 29, 0.08);
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .meta,
+      .small {
+        color: var(--muted);
+      }
+
+      .cta-row,
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .cta-row {
+        margin-top: 18px;
+      }
+
+      .button,
+      button,
+      input[type="file"],
+      select {
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.84);
+        color: var(--ink);
+      }
+
+      .button,
+      button {
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .button.primary,
+      button.primary {
+        background: linear-gradient(135deg, var(--accent), #cf6a2f);
+        color: #fff;
+        border: none;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .field small {
+        color: var(--muted);
+      }
+
+      .result {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(175, 61, 29, 0.08);
+        border: 1px solid rgba(175, 61, 29, 0.18);
+      }
+
+      .error {
+        color: #8b1e12;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 8px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      pre.report {
+        white-space: pre-wrap;
+        line-height: 1.7;
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .grid,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 16px, 1180px);
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="nav">
+        <a class="brand" href="{{ url_for('home') }}">Employee Salary Prediction System</a>
+        <div class="nav-links">
+          <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
+          <a class="nav-link {% if request.endpoint == 'documentation' %}active{% endif %}" href="{{ url_for('documentation') }}">Documentation</a>
+          <a class="nav-link {% if request.endpoint == 'test_page' or request.endpoint == 'predict' or request.endpoint == 'predict_csv' %}active{% endif %}" href="{{ url_for('test_page') }}">Model Testing</a>
+          <a class="nav-link {% if request.endpoint == 'developers' %}active{% endif %}" href="{{ url_for('developers') }}">Technical Summary</a>
+        </div>
+      </nav>
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

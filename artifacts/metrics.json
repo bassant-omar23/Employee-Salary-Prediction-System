@@ -1,0 +1,338 @@
+{
+  "best_model": "lightgbm",
+  "best_model_display_name": "LightGBM Classifier",
+  "train_rows": 22777,
+  "test_rows": 9768,
+  "results": [
+    {
+      "model_name": "logistic_regression",
+      "display_name": "Logistic Regression",
+      "train_accuracy": 0.8558633709443737,
+      "test_accuracy": 0.8563677313677314,
+      "classification_report": {
+        "0": {
+          "precision": 0.8798266853574614,
+          "recall": 0.937533948940793,
+          "f1-score": 0.9077641180724476,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.7605413846954711,
+          "recall": 0.6077371048252912,
+          "f1-score": 0.675606936416185,
+          "support": 2404.0
+        },
+        "accuracy": 0.8563677313677314,
+        "macro avg": {
+          "precision": 0.8201840350264662,
+          "recall": 0.772635526883042,
+          "f1-score": 0.7916855272443163,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8504694102969144,
+          "recall": 0.8563677313677314,
+          "f1-score": 0.8506279730374706,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "svm",
+      "display_name": "SVM",
+      "train_accuracy": 0.8529657110242789,
+      "test_accuracy": 0.8532964782964783,
+      "classification_report": {
+        "0": {
+          "precision": 0.8761892680451605,
+          "recall": 0.9379413362303096,
+          "f1-score": 0.9060142978946678,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.7575596816976128,
+          "recall": 0.5940099833610649,
+          "f1-score": 0.665889484728375,
+          "support": 2404.0
+        },
+        "accuracy": 0.8532964782964783,
+        "macro avg": {
+          "precision": 0.8168744748713866,
+          "recall": 0.7659756597956873,
+          "f1-score": 0.7859518913115213,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8469933706680612,
+          "recall": 0.8532964782964783,
+          "f1-score": 0.8469172410916612,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "decision_tree",
+      "display_name": "Decision Tree",
+      "train_accuracy": 0.8238574000087808,
+      "test_accuracy": 0.8040540540540541,
+      "classification_report": {
+        "0": {
+          "precision": 0.9443900848010437,
+          "recall": 0.7863932645301467,
+          "f1-score": 0.8581802015411973,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.5673817381738174,
+          "recall": 0.858153078202995,
+          "f1-score": 0.6831125827814569,
+          "support": 2404.0
+        },
+        "accuracy": 0.8040540540540541,
+        "macro avg": {
+          "precision": 0.7558859114874306,
+          "recall": 0.8222731713665709,
+          "f1-score": 0.7706463921613271,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.851604656331362,
+          "recall": 0.8040540540540541,
+          "f1-score": 0.8150943543361998,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "random_forest",
+      "display_name": "Random Forest",
+      "train_accuracy": 0.8726346753303771,
+      "test_accuracy": 0.8651719901719902,
+      "classification_report": {
+        "0": {
+          "precision": 0.8791222570532915,
+          "recall": 0.9520640956002173,
+          "f1-score": 0.9141404263641698,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.8031232571109872,
+          "recall": 0.5990016638935108,
+          "f1-score": 0.686204431736955,
+          "support": 2404.0
+        },
+        "accuracy": 0.8651719901719902,
+        "macro avg": {
+          "precision": 0.8411227570821393,
+          "recall": 0.7755328797468641,
+          "f1-score": 0.8001724290505624,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8604181624728964,
+          "recall": 0.8651719901719902,
+          "f1-score": 0.8580431565971935,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "xgboost",
+      "display_name": "XGBoost Classifier",
+      "train_accuracy": 0.8951573956183869,
+      "test_accuracy": 0.8742833742833743,
+      "classification_report": {
+        "0": {
+          "precision": 0.8964848798139055,
+          "recall": 0.9420152091254753,
+          "f1-score": 0.9186862667196398,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.7896551724137931,
+          "recall": 0.6668053244592346,
+          "f1-score": 0.7230491655390167,
+          "support": 2404.0
+        },
+        "accuracy": 0.8742833742833743,
+        "macro avg": {
+          "precision": 0.8430700261138493,
+          "recall": 0.8044102667923549,
+          "f1-score": 0.8208677161293283,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8701930476486853,
+          "recall": 0.8742833742833743,
+          "f1-score": 0.87053806941843,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "lightgbm",
+      "display_name": "LightGBM Classifier",
+      "train_accuracy": 0.8829081968652588,
+      "test_accuracy": 0.8744881244881245,
+      "classification_report": {
+        "0": {
+          "precision": 0.8942702980472764,
+          "recall": 0.9452743074416078,
+          "f1-score": 0.9190652231317665,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.796875,
+          "recall": 0.6576539101497504,
+          "f1-score": 0.7206016408386509,
+          "support": 2404.0
+        },
+        "accuracy": 0.8744881244881245,
+        "macro avg": {
+          "precision": 0.8455726490236382,
+          "recall": 0.8014641087956791,
+          "f1-score": 0.8198334319852087,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8703003659725782,
+          "recall": 0.8744881244881245,
+          "f1-score": 0.8702214012815771,
+          "support": 9768.0
+        }
+      }
+    },
+    {
+      "model_name": "mlp",
+      "display_name": "Neural Network (MLP)",
+      "train_accuracy": 0.868463801202968,
+      "test_accuracy": 0.8569819819819819,
+      "classification_report": {
+        "0": {
+          "precision": 0.8919984233346472,
+          "recall": 0.9219174361759913,
+          "f1-score": 0.9067111853088481,
+          "support": 7364.0
+        },
+        "1": {
+          "precision": 0.7334260547056096,
+          "recall": 0.6580698835274542,
+          "f1-score": 0.6937075202806402,
+          "support": 2404.0
+        },
+        "accuracy": 0.8569819819819819,
+        "macro avg": {
+          "precision": 0.8127122390201285,
+          "recall": 0.7899936598517228,
+          "f1-score": 0.8002093527947441,
+          "support": 9768.0
+        },
+        "weighted avg": {
+          "precision": 0.8529722179513337,
+          "recall": 0.8569819819819819,
+          "f1-score": 0.8542889073883103,
+          "support": 9768.0
+        }
+      }
+    }
+  ],
+  "form_options": {
+    "work-class": [
+      "Federal-gov",
+      "Local-gov",
+      "Never-worked",
+      "Private",
+      "Self-emp-inc",
+      "Self-emp-not-inc",
+      "State-gov",
+      "Without-pay"
+    ],
+    "marital-status": [
+      "Divorced",
+      "Married-AF-spouse",
+      "Married-civ-spouse",
+      "Married-spouse-absent",
+      "Never-married",
+      "Separated",
+      "Widowed"
+    ],
+    "position": [
+      "Adm-clerical",
+      "Armed-Forces",
+      "Craft-repair",
+      "Exec-managerial",
+      "Farming-fishing",
+      "Handlers-cleaners",
+      "Machine-op-inspct",
+      "Other-service",
+      "Priv-house-serv",
+      "Prof-specialty",
+      "Protective-serv",
+      "Sales",
+      "Tech-support",
+      "Transport-moving"
+    ],
+    "relationship": [
+      "Husband",
+      "Not-in-family",
+      "Other-relative",
+      "Own-child",
+      "Unmarried",
+      "Wife"
+    ],
+    "race": [
+      "Amer-Indian-Eskimo",
+      "Asian-Pac-Islander",
+      "Black",
+      "Other",
+      "White"
+    ],
+    "sex": [
+      "Female",
+      "Male"
+    ],
+    "native-country": [
+      "Cambodia",
+      "Canada",
+      "China",
+      "Columbia",
+      "Cuba",
+      "Dominican-Republic",
+      "Ecuador",
+      "El-Salvador",
+      "England",
+      "France",
+      "Germany",
+      "Greece",
+      "Guatemala",
+      "Haiti",
+      "Holand-Netherlands",
+      "Honduras",
+      "Hong",
+      "Hungary",
+      "India",
+      "Iran",
+      "Ireland",
+      "Italy",
+      "Jamaica",
+      "Japan",
+      "Laos",
+      "Mexico",
+      "Nicaragua",
+      "Outlying-US(Guam-USVI-etc)",
+      "Peru",
+      "Philippines",
+      "Poland",
+      "Portugal",
+      "Puerto-Rico",
+      "Scotland",
+      "South",
+      "Taiwan",
+      "Thailand",
+      "Trinadad&Tobago",
+      "United-States",
+      "Vietnam",
+      "Yugoslavia"
+    ]
+  }
+}

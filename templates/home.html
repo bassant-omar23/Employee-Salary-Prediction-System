@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Employee Salary Prediction System{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="pill">FCIS AI Team Project Presentation</span>
+        <h1>Employee Salary Prediction Using Demographic and Occupational Features</h1>
+        <p>
+          This website presents the project in a structured academic form, including documentation,
+          model evaluation, and an interface for controlled prediction experiments. The current best saved model is
+          <strong>{{ best_model_display_name }}</strong>.
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="{{ url_for('test_page') }}">Open Model Testing</a>
+          <a class="button" href="{{ url_for('documentation') }}">Open Documentation</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Project Scope</h3>
+        <p>Evaluate a single prediction through a guided input form.</p>
+        <p>Upload a CSV file for batch prediction and output review.</p>
+        <p>Examine model performance, documentation, and technical notes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h3>Structured Input Form</h3>
+      <p>The testing interface uses clear academic labels such as Education Level and Job Role instead of notebook-oriented field names.</p>
+    </div>
+    <div class="card">
+      <h3>Validated Inputs</h3>
+      <p>Ambiguous dataset entries such as <code>?</code> are excluded from the visible form options so that only interpretable inputs are presented.</p>
+    </div>
+    <div class="card">
+      <h3>Comparative Model Output</h3>
+      <p>After submission, the testing page reports the prediction of each trained model for the same input record.</p>
+    </div>
+  </section>
+{% endblock %}

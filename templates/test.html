@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Model Testing | Employee Salary Prediction System{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <span class="pill">Model Testing Interface</span>
+    <h1>Evaluate the trained salary prediction models</h1>
+    <p>
+      This interface provides a controlled environment for testing the trained models using clearer feature names
+      and filtered categorical values. After submission, the results table compares all trained models on the same input record.
+    </p>
+  </section>
+
+  <section class="grid">
+    <div class="panel">
+      <h2>Single-Record Prediction</h2>
+      <form method="post" action="{{ url_for('predict') }}">
+        <div class="form-grid">
+          {% for field in form_schema %}
+            <div class="field">
+              <label for="{{ field.name }}">{{ field.label }}</label>
+              <small>{{ field.help_text }}</small>
+              <select id="{{ field.name }}" name="{{ field.name }}" required>
+                {% for option in field.options %}
+                  <option value="{{ option.value }}" {% if request.form.get(field.name) == option.value|string %}selected{% endif %}>
+                    {{ option.label }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="actions" style="margin-top: 18px;">
+          <button class="primary" type="submit">Run Prediction</button>
+        </div>
+      </form>
+
+      {% if prediction %}
+        <div class="result" style="margin-top: 18px;">
+          {% if prediction.error %}
+            <div class="error">{{ prediction.error }}</div>
+          {% else %}
+            <h3>Best Model Output: {{ prediction.prediction_label }}</h3>
+            {% if prediction.confidence %}
+              <div class="small">
+                Confidence: {{ '%.1f'|format(prediction.confidence * 100) }}%<br>
+                Probability <=50K: {{ '%.1f'|format(prediction.probabilities[0] * 100) }}%<br>
+                Probability >50K: {{ '%.1f'|format(prediction.probabilities[1] * 100) }}%
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="panel">
+      <h2>Comparative Model Results</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Train Accuracy</th>
+              <th>Test Accuracy</th>
+              <th>Prediction for This Record</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in overall_results %}
+              {% set prediction_item = model_predictions_by_name.get(result.model_name) %}
+              <tr>
+                <td>{{ result.display_name }}</td>
+                <td>{{ '%.4f'|format(result.train_accuracy) }}</td>
+                <td>{{ '%.4f'|format(result.test_accuracy) }}</td>
+                <td>
+                  {% if prediction_item %}
+                    {{ prediction_item.prediction_label }}
+                  {% else %}
+                    <span class="small">Awaiting input</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if prediction_item and prediction_item.confidence %}
+                    {{ '%.1f'|format(prediction_item.confidence * 100) }}%
+                  {% else %}
+                    <span class="small">N/A</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" style="margin-top: 20px;">
+    <h2>Batch CSV Evaluation</h2>
+    <p class="small">
+      Upload a CSV file that follows the original notebook schema. Test-style column names such as <code>workclass</code>,
+      <code>occupation</code>, and <code>fnlwgt</code> remain supported.
+    </p>
+
+    <form method="post" action="{{ url_for('predict_csv') }}" enctype="multipart/form-data">
+      <div class="actions">
+        <input type="file" name="csv_file" accept=".csv" required>
+        <button class="primary" type="submit">Preview Results</button>
+      </div>
+    </form>
+
+    <form method="post" action="{{ url_for('predict_csv') }}" enctype="multipart/form-data" style="margin-top: 12px;">
+      <div class="actions">
+        <input type="file" name="csv_file" accept=".csv" required>
+        <input type="hidden" name="download" value="1">
+        <button type="submit">Download Output CSV</button>
+      </div>
+    </form>
+
+    {% if batch_error %}
+      <div class="error" style="margin-top: 12px;">{{ batch_error }}</div>
+    {% endif %}
+
+    {% if batch_preview %}
+      <div class="table-wrap" style="margin-top: 16px;">
+        <table>
+          <thead>
+            <tr>
+              {% for column in batch_columns %}
+                <th>{{ column }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in batch_preview %}
+              <tr>
+                {% for column in batch_columns %}
+                  <td>{{ row[column] }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

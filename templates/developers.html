@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Technical Summary | Employee Salary Prediction System{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <span class="pill">Technical Summary</span>
+    <h1>Implementation Overview</h1>
+    <p>
+      The system trains multiple classification models from <code>Train.csv</code> and <code>Test.csv</code>,
+      stores the fitted pipelines, and uses the best saved model as the default prediction engine.
+    </p>
+  </section>
+
+  <section class="grid">
+    <div class="panel">
+      <h2>Overall Training Results</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Train Accuracy</th>
+              <th>Test Accuracy</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in overall_results %}
+              <tr>
+                <td>{{ result.display_name }}</td>
+                <td>{{ '%.4f'|format(result.train_accuracy) }}</td>
+                <td>{{ '%.4f'|format(result.test_accuracy) }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <form method="post" action="{{ url_for('retrain') }}" style="margin-top: 18px;">
+        <button type="submit">Retrain Models and Refresh Artifacts</button>
+      </form>
+    </div>
+
+    <div class="panel team-panel">
+      <span class="pill">FCIS AI Team</span>
+      <h2>Project Team</h2>
+      <p class="small">
+        This project was prepared and implemented by the following team members.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          
+          <h3>Ahmed Amr</h3>
+        </div>
+        <div class="team-card">
+          
+          <h3>Youssef AbuZahra</h3>
+        </div>
+        <div class="team-card">
+         
+          <h3>Basma Ahmed</h3>
+        </div>
+        <div class="team-card">
+          
+          <h3>Bassant Omar</h3>
+        </div>
+        <div class="team-card">
+          
+          <h3>Boshra Akram</h3>
+        </div>
+        <div class="team-card">
+          
+          <h3>Malak Elfiky</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>System Notes</h2>
+      <p>Backend stack: Flask, pandas, scikit-learn, joblib, XGBoost, and LightGBM.</p>
+      <p>Stored artifacts: the best model, the complete trained model set, and the performance summary file in <code>artifacts/</code>.</p>
+      <p>Available sections: Home, Documentation, Model Testing, and Technical Summary.</p>
+      <p>The inference interface applies validated dropdown inputs, filtered categories, and per-record model comparison.</p>
+    </div>
+  </section>
+
+  <style>
+    .team-panel {
+      background:
+        radial-gradient(circle at top right, rgba(175, 61, 29, 0.14), transparent 32%),
+        linear-gradient(135deg, rgba(255, 250, 244, 0.96), rgba(248, 239, 225, 0.94));
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .team-card {
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(29, 26, 22, 0.1);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 12px 28px rgba(60, 32, 10, 0.08);
+    }
+
+    .team-card h3 {
+      margin: 8px 0 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #af3d1d, #d06d30);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 640px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card h3 {
+        font-size: 20px;
+      }
+    }
+  </style>
+{% endblock %}
